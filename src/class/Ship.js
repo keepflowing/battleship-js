@@ -18,4 +18,14 @@ export default class Ship {
   hit(n) {
     this.hits[n] = 1;
   }
+
+  /**
+   * @return {bool}
+   */
+  isSunk() {
+    for (let i = 0; i < this.length; i++) {
+      if (!this.hits[i]) return false;
+    }
+    return true;
+  }
 }
