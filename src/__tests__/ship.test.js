@@ -1,24 +1,24 @@
 import Ship from '../class/Ship';
 
 describe('Ship', () => {
-  it('is created', () => {
-    expect(new Ship(3, 4)).toBeTruthy();
+  test('create', () => {
+    expect(new Ship(3, 4, true)).toBeTruthy();
   });
 
-  it('is not sunk', () => {
-    const ship = new Ship(5, 5);
+  test('not sunk', () => {
+    const ship = new Ship(5, 5, true);
     expect(ship.isSunk()).toBe(false);
   });
 
-  it('is sunk', () => {
-    const ship = new Ship(1, 2);
+  test('is sunk', () => {
+    const ship = new Ship(1, 2, true);
     ship.hit(0);
     ship.hit(1);
     expect(ship.isSunk()).toBe(true);
   });
 
-  it('returns array with hits', () => {
-    const ship = new Ship(1, 2);
+  test('return array with hits', () => {
+    const ship = new Ship(1, 2, false);
     ship.hit(1);
     expect(ship.hits[0]).toBeFalsy;
     expect(ship.hits[1]).toBe(1);

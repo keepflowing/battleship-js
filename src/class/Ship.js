@@ -6,10 +6,12 @@ export default class Ship {
    * Creates Ship of length n
    * @param {int} id
    * @param {int} length
+   * @param {bool} rotated
    */
-  constructor(id, length) {
+  constructor(id, length, rotated) {
     this.id = id;
     this.length = length;
+    this.rotated = rotated;
     this.hits = new Array(length);
   }
 
