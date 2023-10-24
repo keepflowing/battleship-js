@@ -3,7 +3,7 @@
  */
 export default class Gameboard {
   /**
-   * rows, letters A-J
+   * Columns, letters A-J
    */
   constructor() {
     this.cols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
@@ -22,24 +22,24 @@ export default class Gameboard {
   }
   /**
    * @param {string} square
-   * @param {int} length
+   * @param {Ship} ship
    * @param {bool} rotated
    */
-  placeShip(square, length, rotated) {
+  placeShip(square, ship, rotated) {
     const first = this.squares[square];
     const col = this.cols.indexOf(square[0]);
     const row = parseInt(square[1]);
     if (!first.hasShip) {
-      this.squares[square].hasShip = 1;
+      this.squares[square].hasShip = ship.id;
       if (rotated) {
-        for (let i = col; i < col+length; i++) {
+        for (let i = col; i < col+ship.length; i++) {
           const s = `${this.cols[i]}${row}`;
-          this.squares[s].hasShip = 1;
+          this.squares[s].hasShip = ship.id;
         }
       } else {
-        for (let i = row; i < row+length; i++) {
+        for (let i = row; i < row+ship.length; i++) {
           const s = `${this.cols[col]}${i}`;
-          this.squares[s].hasShip = 1;
+          this.squares[s].hasShip = ship.id;
         }
       }
     } else {

@@ -4,9 +4,11 @@
 export default class Ship {
   /**
    * Creates Ship of length n
+   * @param {int} id
    * @param {int} length
    */
-  constructor(length) {
+  constructor(id, length) {
+    this.id = id;
     this.length = length;
     this.hits = new Array(length);
   }
