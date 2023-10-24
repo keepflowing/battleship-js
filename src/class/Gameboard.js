@@ -16,7 +16,7 @@ export default class Gameboard {
     this.squares = {};
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
-        const key = `${this.cols[i]}${j+1}`;
+        const key = `${this.cols[j]}${i+1}`;
         this.squares[key] = {hasShip: false};
       }
     }
