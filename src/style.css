@@ -2,3 +2,28 @@ html {
   background-color: black;
   color: white;
 }
+
+body {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 80px;
+}
+
+.gameboard {
+  max-width: 520px;
+  padding: 0;
+}
+
+.square {
+  background-color: blue;
+  border: solid white 1px;
+  display: inline-block;
+  height: 50px;
+  margin: 0;
+  width: 50px;
+}
+
+.attacked {
+  background-color: red;
+}
