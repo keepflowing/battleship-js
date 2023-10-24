@@ -3,7 +3,20 @@ import Gameboard from '../class/Gameboard';
 const gameboard = new Gameboard();
 
 describe('Gameboard', () => {
-  test.todo('report if all ships are sunk');
+  test('report if all ships are sunk', () => {
+    gameboard.init();
+    const ship = new Ship(2, 2, false);
+    gameboard.placeShip('H4', ship);
+    expect(gameboard.allSunk()).toBe(false);
+    gameboard.recieveAttack('H4');
+    gameboard.recieveAttack('H5');
+    const ship2 = new Ship(4, 3, true);
+    gameboard.placeShip('B2', ship2);
+    gameboard.recieveAttack('B2');
+    gameboard.recieveAttack('C2');
+    gameboard.recieveAttack('D2');
+    expect(gameboard.allSunk()).toBe(true);
+  });
   test('can register a hit on a rotated Ship if a square is attacked', () => {
     gameboard.init();
     const ship = new Ship(3, 4, true);

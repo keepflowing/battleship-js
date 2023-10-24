@@ -68,6 +68,23 @@ export default class Gameboard {
   }
 
   /**
+   * Check if all ships are sunk
+   * @return {bool}
+   */
+  allSunk() {
+    const ships = new Set();
+    for (const coord in this.squares) {
+      if (this.squares[coord].hasShip) {
+        ships.add(this.squares[coord].hasShip);
+      }
+    }
+    for (const ship of ships) {
+      if (!ship.isSunk()) return false;
+    }
+    return true;
+  }
+
+  /**
    * @param {string} square
    * @param {Ship} ship
    * @param {bool} rotated
