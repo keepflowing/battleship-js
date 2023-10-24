@@ -90,24 +90,28 @@ export default class Gameboard {
    * @param {bool} rotated
    */
   placeShip(square, ship) {
-    const first = this.squares[square];
     const col = this.cols.indexOf(square[0]);
     const row = parseInt(square[1]);
-    if (!first.hasShip) {
-      this.squares[square].hasShip = ship;
-      if (ship.rotated) {
-        for (let i = col; i < col+ship.length; i++) {
-          const s = `${this.cols[i]}${row}`;
-          this.squares[s].hasShip = ship;
-        }
-      } else {
-        for (let i = row; i < row+ship.length; i++) {
-          const s = `${this.cols[col]}${i}`;
-          this.squares[s].hasShip = ship;
-        }
+    const coords = [];
+    if (ship.rotated) {
+      for (let i = col; i < col+ship.length; i++) {
+        const s = `${this.cols[i]}${row}`;
+        coords.push(s);
+        // this.squares[s].hasShip = ship;
       }
     } else {
-      throw new Error('The square is occupied!');
+      for (let i = row; i < row+ship.length; i++) {
+        const s = `${this.cols[col]}${i}`;
+        coords.push(s);
+      }
+    }
+    for (let i = 0; i < coords.length; i++) {
+      if (this.squares[coords[i]].hasShip) {
+        throw new Error('You cannot place ships on top of eachother!');
+      }
+    }
+    for (let i = 0; i < coords.length; i++) {
+      this.squares[coords[i]].hasShip = ship;
     }
   }
 }

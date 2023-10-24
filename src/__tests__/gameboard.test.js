@@ -3,6 +3,15 @@ import Gameboard from '../class/Gameboard';
 const gameboard = new Gameboard();
 
 describe('Gameboard', () => {
+  test('ships cant be placed on top of other ships', () => {
+    gameboard.init();
+    const ship = new Ship(1, 2, false);
+    gameboard.placeShip('D2', ship);
+    const ship2 = new Ship(2, 2, true);
+    expect(() => gameboard.placeShip('C2', ship2))
+        .toThrow(Error);
+  });
+
   test('report if all ships are sunk', () => {
     gameboard.init();
     const ship = new Ship(2, 2, false);
