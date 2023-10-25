@@ -90,6 +90,7 @@ export default class Gameboard {
    * @param {bool} rotated
    */
   placeShip(square, ship) {
+    console.log(square, ship);
     const col = this.cols.indexOf(square[0]);
     const row = parseInt(square[1]);
     const coords = [];
@@ -106,7 +107,9 @@ export default class Gameboard {
       }
     }
     for (let i = 0; i < coords.length; i++) {
-      if (this.squares[coords[i]].hasShip) {
+      if (!this.squares[coords[i]]) {
+        throw new Error('You cannot place ships outside the map!');
+      } else if (this.squares[coords[i]].hasShip) {
         throw new Error('You cannot place ships on top of eachother!');
       }
     }

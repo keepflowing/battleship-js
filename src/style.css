@@ -16,14 +16,27 @@ body {
 }
 
 .square {
-  background-color: blue;
+  background-color: #000062;
   border: solid white 1px;
+  cursor: crosshair;
   display: inline-block;
   height: 50px;
   margin: 0;
   width: 50px;
 }
 
-.attacked {
-  background-color: red;
+.enemy:hover {
+  background-color: lightseagreen;
+}
+
+.square.attacked {
+  background-color: #c56565;
+}
+
+.square.ship {
+  background-color: #393939;
+}
+
+.attacked.ship {
+  background-color: #e41515;
 }

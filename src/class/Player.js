@@ -5,10 +5,12 @@ import Gameboard from './Gameboard';
 export default class Player {
   /**
    * @param {string} name
+   * @param {bool} [ai=false]
    */
-  constructor(name) {
+  constructor(name, ai = false) {
     this.name = name;
     this.gameboard = new Gameboard();
+    this.ai = ai;
   }
 
   /**
@@ -18,6 +20,7 @@ export default class Player {
   fire(coord, enemy) {
     if (!enemy.gameboard.squares[coord].attacked) {
       enemy.gameboard.recieveAttack(coord);
+      console.log(`${this.name} attacks ${enemy.name}`);
     } else {
       throw new Error('You cannot attack the same square twice!');
     }
