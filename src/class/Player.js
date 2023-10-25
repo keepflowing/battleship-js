@@ -16,13 +16,30 @@ export default class Player {
   /**
    * @param {string} coord
    * @param {Player} enemy
+   * @return {bool}
    */
   fire(coord, enemy) {
     if (!enemy.gameboard.squares[coord].attacked) {
       enemy.gameboard.recieveAttack(coord);
-      console.log(`${this.name} attacks ${enemy.name}`);
+      return true;
     } else {
-      throw new Error('You cannot attack the same square twice!');
+      return false;
+    }
+  }
+
+  /**
+   * @param {Player} enemy
+   * @return {string}
+   */
+  randomFire(enemy) {
+    const cols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    const col = Math.floor(Math.random() * 10);
+    const row = Math.floor(Math.random() * 10) + 1;
+    const coord = `${cols[col]}${row}`;
+    if (!this.fire(coord, enemy)) {
+      return this.randomFire(enemy);
+    } else {
+      return coord;
     }
   }
 }

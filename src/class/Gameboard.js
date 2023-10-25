@@ -1,3 +1,4 @@
+import Ship from './Ship';
 /**
  * @module Gameboard
  */
@@ -88,9 +89,9 @@ export default class Gameboard {
    * @param {string} square
    * @param {Ship} ship
    * @param {bool} rotated
+   * @return {bool}
    */
   placeShip(square, ship) {
-    console.log(square, ship);
     const col = this.cols.indexOf(square[0]);
     const row = parseInt(square[1]);
     const coords = [];
@@ -108,13 +109,33 @@ export default class Gameboard {
     }
     for (let i = 0; i < coords.length; i++) {
       if (!this.squares[coords[i]]) {
-        throw new Error('You cannot place ships outside the map!');
+        return false;
       } else if (this.squares[coords[i]].hasShip) {
-        throw new Error('You cannot place ships on top of eachother!');
+        return false;
       }
     }
     for (let i = 0; i < coords.length; i++) {
       this.squares[coords[i]].hasShip = ship;
     }
+    return true;
+  }
+
+  /**
+   * Place Ships randomly
+   * @return {bool}
+   */
+  randomPlaceShips() {
+    const ships = [[1, 5], [2, 4], [3, 3], [4, 3], [5, 2]];
+    this.init();
+    for (let i = 0; i < ships.length; i++) {
+      const col = Math.floor(Math.random() * 10);
+      const row = Math.floor(Math.random() * 10) + 1;
+      const rot = Math.floor(Math.random() * 2);
+      const ship = new Ship(ships[i][0], ships[i][1], rot);
+      if (!this.placeShip(`${this.cols[col]}${row}`, ship)) {
+        return this.randomPlaceShips();
+      }
+    }
+    return true;
   }
 }

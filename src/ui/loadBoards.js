@@ -8,14 +8,21 @@ const drawBoard = (p, e) => {
   const keyArr = Object.keys(p.gameboard.squares);
   for (let i = 0; i < keyArr.length; i++) {
     const square = document.createElement('div');
+    square.id = `${p.name}${keyArr[i]}`;
     if (p.ai) {
       square.classList.add('enemy');
       square.addEventListener('click', () => {
-        e.fire(keyArr[i], p);
-        square.classList.add('attacked');
-        if (p.gameboard.squares[keyArr[i]].hasShip) {
-          square.classList.add('ship');
-          if (p.gameboard.allSunk()) console.log('Game over!');
+        if (e.fire(keyArr[i], p)) {
+          square.classList.add('attacked');
+          if (p.gameboard.squares[keyArr[i]].hasShip) {
+            square.classList.add('ship');
+            if (p.gameboard.allSunk()) {
+              console.log('Game over!');
+            }
+          }
+          const coord = p.randomFire(e);
+          document.getElementById(`${e.name}${coord}`)
+              .classList.add('attacked');
         }
       });
     }
