@@ -44,6 +44,7 @@ const drawBoard = (p, e) => {
  * @param {Player} p2
  */
 const loadBoards = (p1, p2) => {
+  document.body.innerHTML = '';
   drawBoard(p1, p2);
   drawBoard(p2, p1);
 };

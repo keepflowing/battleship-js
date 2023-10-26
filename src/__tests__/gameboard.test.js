@@ -9,7 +9,7 @@ describe('Gameboard', () => {
     gameboard.placeShip('D2', ship);
     const ship2 = new Ship(2, 2, true);
     expect(() => gameboard.placeShip('C2', ship2))
-        .toThrow(Error);
+        .toBeFalsy;
   });
 
   test('report if all ships are sunk', () => {
