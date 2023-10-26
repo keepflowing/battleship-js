@@ -10,6 +10,15 @@ body {
   padding-top: 80px;
 }
 
+#startMenu {
+  align-items: center;
+  background-color: #727272;
+  border: solid white 1px;
+  display: flex;
+  gap: 40px;
+  justify-content: space-evenly;
+}
+
 .gameboard {
   max-width: 520px;
   padding: 0;

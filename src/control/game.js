@@ -4,7 +4,8 @@ import loadMenu from '../ui/loadMenu';
 import loadBoards from '../ui/loadBoards';
 
 const init = () => {
-  const menu = loadMenu();
+  const menuPlayer = new Player('start');
+  const menu = loadMenu(menuPlayer);
   document.body.appendChild(menu);
   const startBtn = document.getElementById('startButton');
   startBtn.addEventListener('click', () => {
@@ -20,7 +21,10 @@ const start = () => {
 
   p2.gameboard.placeShip('G5', new Ship(2, 4, true));
 
-  loadBoards(p1, p2);
+  const boards = loadBoards(p1, p2);
+  document.body.innerHTML = '';
+  document.body.appendChild(boards[0]);
+  document.body.appendChild(boards[1]);
 };
 
 export {init, start};

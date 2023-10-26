@@ -1,6 +1,7 @@
 /**
  * @param {Player} p
  * @param {Player} e
+ * @return {Object}
  */
 const drawBoard = (p, e) => {
   const pBoard = document.createElement('div');
@@ -8,7 +9,8 @@ const drawBoard = (p, e) => {
   const keyArr = Object.keys(p.gameboard.squares);
   for (let i = 0; i < keyArr.length; i++) {
     const square = document.createElement('div');
-    square.id = `${p.name}${keyArr[i]}`;
+    if (e) square.id = `${p.name}${keyArr[i]}`;
+    else square.id = keyArr[i];
     if (p.ai) {
       square.classList.add('enemy');
       square.addEventListener('click', () => {
@@ -36,17 +38,22 @@ const drawBoard = (p, e) => {
     square.innerText = keyArr[i];
     pBoard.appendChild(square);
   }
-  document.body.appendChild(pBoard);
+  return pBoard;
 };
 
 /**
  * @param {Player} p1
  * @param {Player} p2
+ * @return {*}
  */
-const loadBoards = (p1, p2) => {
-  document.body.innerHTML = '';
-  drawBoard(p1, p2);
-  drawBoard(p2, p1);
+const loadBoards = (p1, p2 = null) => {
+  const p1Board = drawBoard(p1, p2);
+  if (p2) {
+    const p2Board = drawBoard(p2, p1);
+    return [p1Board, p2Board];
+  } else {
+    return p1Board;
+  }
 };
 
 export default loadBoards;
