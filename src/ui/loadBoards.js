@@ -18,9 +18,6 @@ const drawBoard = (p, e) => {
           square.classList.add('attacked');
           if (p.gameboard.squares[keyArr[i]].hasShip) {
             square.classList.add('ship');
-            if (p.gameboard.allSunk()) {
-              alert('Game over!');
-            }
           }
           const coord = p.randomFire(e);
           document.getElementById(`${e.name}${coord}`)

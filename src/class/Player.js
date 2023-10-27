@@ -21,6 +21,9 @@ export default class Player {
   fire(coord, enemy) {
     if (!enemy.gameboard.squares[coord].attacked) {
       enemy.gameboard.recieveAttack(coord);
+      if (enemy.gameboard.allSunk()) {
+        alert(`Game Over! ${this.name} wins!`);
+      }
       return true;
     } else {
       return false;
