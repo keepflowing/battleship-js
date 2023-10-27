@@ -13,7 +13,6 @@ const initDragnDrop = (square, p) => {
         if (data) {
           const shot = p.gameboard.placeShip(squares[i].id,
               new Ship(data[0], data[1], data[2]));
-          console.log(shot);
           if (shot) square.remove();
         }
         data = null;
@@ -33,7 +32,7 @@ const createShipPlacers = (p) => {
   for (let i = 0; i < ships.length; i++) {
     const placer = document.createElement('div');
 
-    placer.className = 'ship square';
+    placer.className = 'ship square placer';
     placer.innerText = ships[i][1];
     placer.setAttribute('draggable', true);
     placer.setAttribute('data', `[${ships[i][0]}, ${ships[i][1]}, false]`);

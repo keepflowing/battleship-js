@@ -8,11 +8,13 @@ const init = () => {
   document.body.appendChild(menu[0]);
   const startBtn = document.getElementById('startButton');
   startBtn.addEventListener('click', () => {
-    start(menu[1]);
+    const placers = document.getElementsByClassName('placer');
+    if (!placers.length) start(menu[1]);
+    else start();
   });
 };
 
-const start = (squares) => {
+const start = (squares = null) => {
   const p1 = new Player('p1');
   const p2 = new Player('p2', true);
 
