@@ -10,18 +10,25 @@ body {
   padding-top: 80px;
 }
 
-#startMenu {
+#startMenu, #placers {
   align-items: center;
   background-color: #727272;
   border: solid white 1px;
   display: flex;
   gap: 40px;
   justify-content: space-evenly;
+  padding: 40px;
 }
 
 .gameboard {
   max-width: 520px;
   padding: 0;
+}
+
+.placer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .square {

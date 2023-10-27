@@ -32,12 +32,17 @@ const createShipPlacers = (p) => {
   for (let i = 0; i < ships.length; i++) {
     const placer = document.createElement('div');
 
-    placer.className = 'ship square placer';
-    placer.innerText = ships[i][1];
+    placer.className = 'placer';
     placer.setAttribute('draggable', true);
     placer.setAttribute('data', `[${ships[i][0]}, ${ships[i][1]}, false]`);
     // add eventlisteners for dragging & dropping
     initDragnDrop(placer, p);
+
+    for (let j = 0; j < ships[i][1]; j++) {
+      const square = document.createElement('div');
+      square.className = 'ship square';
+      placer.appendChild(square);
+    }
     placers.push(placer);
   }
   return placers;
@@ -48,19 +53,21 @@ const loadMenu = (p) => {
   p.gameboard.init();
   const board = loadBoards(p);
   const div = document.createElement('div');
+  const pDiv = document.createElement('div');
   div.id = 'startMenu';
+  pDiv.id = 'placers';
   div.appendChild(board);
   const shipPlacers = createShipPlacers(p);
 
   for (let i = 0; i < shipPlacers.length; i++) {
-    div.appendChild(shipPlacers[i]);
+    pDiv.appendChild(shipPlacers[i]);
   }
   const button = document.createElement('button');
   button.id = 'startButton';
   button.innerText = 'Start';
   div.appendChild(button);
 
-  return [div, p.gameboard.squares];
+  return [div, pDiv, p.gameboard.squares];
 };
 
 export default loadMenu;

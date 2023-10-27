@@ -6,10 +6,11 @@ const init = () => {
   const menuPlayer = new Player('start');
   const menu = loadMenu(menuPlayer);
   document.body.appendChild(menu[0]);
+  document.body.appendChild(menu[1]);
   const startBtn = document.getElementById('startButton');
   startBtn.addEventListener('click', () => {
     const placers = document.getElementsByClassName('placer');
-    if (!placers.length) start(menu[1]);
+    if (!placers.length) start(menu[2]);
     else start();
   });
 };
