@@ -92,6 +92,7 @@ export default class Gameboard {
    * @return {bool}
    */
   placeShip(square, ship) {
+    if (!square) return false;
     const col = this.cols.indexOf(square[0]);
     const row = parseInt(square[1]);
     const coords = [];

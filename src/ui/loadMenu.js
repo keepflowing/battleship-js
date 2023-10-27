@@ -11,11 +11,12 @@ const initDragnDrop = (square, p) => {
       });
       squares[i].addEventListener('drop', (e) => {
         if (data) {
-          p.gameboard.placeShip(squares[i].id,
+          const shot = p.gameboard.placeShip(squares[i].id,
               new Ship(data[0], data[1], data[2]));
+          console.log(shot);
+          if (shot) square.remove();
         }
         data = null;
-        square.remove();
         for (const square in p.gameboard.squares) {
           if (p.gameboard.squares[square].hasShip) {
             document.getElementById(square).classList.add('ship');
