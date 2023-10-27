@@ -15,6 +15,7 @@ const initDragnDrop = (square, p) => {
               new Ship(data[0], data[1], data[2]));
         }
         data = null;
+        square.remove();
         for (const square in p.gameboard.squares) {
           if (p.gameboard.squares[square].hasShip) {
             document.getElementById(square).classList.add('ship');

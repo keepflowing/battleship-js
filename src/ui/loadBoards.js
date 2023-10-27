@@ -19,7 +19,7 @@ const drawBoard = (p, e) => {
           if (p.gameboard.squares[keyArr[i]].hasShip) {
             square.classList.add('ship');
             if (p.gameboard.allSunk()) {
-              console.log('Game over!');
+              alert('Game over!');
             }
           }
           const coord = p.randomFire(e);
