@@ -62,7 +62,6 @@ const loadMenu = (p) => {
   for (let i = 0; i < shipPlacers.length; i++) {
     shipPlacers[i].addEventListener('click', () => {
       const data = JSON.parse(shipPlacers[i].getAttribute('data'));
-      console.log(data);
       if (data[2]) data[2] = false;
       else data[2] = true;
       shipPlacers[i].setAttribute('data', JSON.stringify(data));

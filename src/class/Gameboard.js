@@ -92,9 +92,12 @@ export default class Gameboard {
    * @return {bool}
    */
   placeShip(square, ship) {
+    console.log(square);
     if (!square) return false;
     const col = this.cols.indexOf(square[0]);
-    const row = parseInt(square[1]);
+    let row;
+    if (square[2]) row = parseInt(square[1]+square[2]);
+    else row = parseInt(square[1]);
     const coords = [];
     if (ship.rotated) {
       for (let i = col; i < col+ship.length; i++) {
