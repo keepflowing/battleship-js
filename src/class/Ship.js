@@ -4,7 +4,7 @@
 export default class Ship {
   /**
    * Creates Ship of length n
-   * @param {int} id
+   * @param {string} id
    * @param {int} length
    * @param {bool} rotated
    */

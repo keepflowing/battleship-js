@@ -20,9 +20,13 @@ export default class Player {
    */
   fire(coord, enemy) {
     if (!enemy.gameboard.squares[coord].attacked) {
-      enemy.gameboard.recieveAttack(coord);
+      const ship = enemy.gameboard.recieveAttack(coord);
+      if (ship && ship.isSunk()) {
+        console.log(`${this.name} has sunk ${enemy.name}'s ${ship.id}`);
+      }
+
       if (enemy.gameboard.allSunk()) {
-        alert(`Game Over! ${this.name} wins!`);
+        console.log(`Game Over! ${this.name} wins!`);
       }
       return true;
     } else {

@@ -26,6 +26,7 @@ export default class Gameboard {
   /**
    * Recieve attack
    * @param {string} coord
+   * @return {*}
    */
   recieveAttack(coord) {
     const square = this.squares[coord];
@@ -35,6 +36,7 @@ export default class Gameboard {
       const col = this.cols.indexOf(coord[0]);
       const row = parseInt(coord[1]);
       let count = 0;
+      // calculate on which square ship is hit
       // if ship is rotated
       if (ship.rotated) {
         for (let i = 0; i < 10; i++) {
@@ -65,7 +67,9 @@ export default class Gameboard {
         }
       }
       ship.hit(count);
+      return ship;
     }
+    return false;
   }
 
   /**
@@ -92,7 +96,6 @@ export default class Gameboard {
    * @return {bool}
    */
   placeShip(square, ship) {
-    console.log(square);
     if (!square) return false;
     const col = this.cols.indexOf(square[0]);
     let row;
@@ -129,7 +132,8 @@ export default class Gameboard {
    * @return {bool}
    */
   randomPlaceShips() {
-    const ships = [[1, 5], [2, 4], [3, 3], [4, 3], [5, 2]];
+    const ships = [['Carrier', 5], ['Battleship', 4],
+      ['Cruiser', 3], ['Submarine', 3], ['Destroyer', 2]];
     this.init();
     for (let i = 0; i < ships.length; i++) {
       const col = Math.floor(Math.random() * 10);

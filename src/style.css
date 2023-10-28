@@ -15,9 +15,9 @@ body {
   background-color: #727272;
   border: solid white 1px;
   display: flex;
-  gap: 40px;
+  gap: 30px;
   justify-content: space-evenly;
-  padding: 40px;
+  padding: 20px;
 }
 
 .gameboard {
@@ -60,4 +60,8 @@ body {
 
 .attacked.ship {
   background-color: #e41515;
+}
+
+.attacked.ship.sunk {
+  background-color: #8715e4;
 }

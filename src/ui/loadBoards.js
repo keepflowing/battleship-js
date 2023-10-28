@@ -16,8 +16,10 @@ const drawBoard = (p, e) => {
       square.addEventListener('click', () => {
         if (e.fire(keyArr[i], p)) {
           square.classList.add('attacked');
-          if (p.gameboard.squares[keyArr[i]].hasShip) {
+          const ship = p.gameboard.squares[keyArr[i]].hasShip;
+          if (ship) {
             square.classList.add('ship');
+            if (ship.isSunk()) square.classList.add('sunk');
           }
           const coord = p.randomFire(e);
           document.getElementById(`${e.name}${coord}`)
