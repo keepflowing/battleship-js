@@ -1,4 +1,5 @@
 import Gameboard from './Gameboard';
+
 /**
  * @module Player
  */
@@ -19,14 +20,24 @@ export default class Player {
    * @return {bool}
    */
   fire(coord, enemy) {
+    let output;
+    if (this.ai) output = document.querySelector('#p2');
+    else output = document.querySelector('#p1');
     if (!enemy.gameboard.squares[coord].attacked) {
       const ship = enemy.gameboard.recieveAttack(coord);
-      if (ship && ship.isSunk()) {
-        console.log(`${this.name} has sunk ${enemy.name}'s ${ship.id}`);
+      if (ship) {
+        if (ship.isSunk()) {
+          output.innerText =
+          (`${this.name} has sunk ${enemy.name}'s ${ship.id}`);
+        } else {
+          output.innerText = (`${this.name} has hit a ship on ${coord}`);
+        }
+      } else {
+        output.innerText = (`${this.name} attacks ${coord}, it's a miss.`);
       }
 
       if (enemy.gameboard.allSunk()) {
-        console.log(`Game Over! ${this.name} wins!`);
+        output.innerText = (`Game Over! ${this.name} wins!`);
       }
       return true;
     } else {

@@ -2,11 +2,22 @@ import Player from '../class/Player';
 import loadMenu from '../ui/loadMenu';
 import loadBoards from '../ui/loadBoards';
 
+const div = document.createElement('div');
+const p1 = document.createElement('p');
+p1.id = 'p1';
+const p2 = document.createElement('p');
+p2.id = 'p2';
+div.classList.add('gb-container');
+document.body.appendChild(div);
+document.body.appendChild(p1);
+document.body.appendChild(p2);
+
 const init = () => {
+  div.innerHTML = '';
   const menuPlayer = new Player('start');
   const menu = loadMenu(menuPlayer);
-  document.body.appendChild(menu[0]);
-  document.body.appendChild(menu[1]);
+  div.appendChild(menu[0]);
+  div.appendChild(menu[1]);
   const startBtn = document.getElementById('startButton');
   startBtn.addEventListener('click', () => {
     const placers = document.getElementsByClassName('placer');
@@ -23,10 +34,10 @@ const start = (squares = null) => {
   else p1.gameboard.randomPlaceShips();
   p2.gameboard.randomPlaceShips();
 
+  div.innerHTML = '';
   const boards = loadBoards(p1, p2);
-  document.body.innerHTML = '';
-  document.body.appendChild(boards[0]);
-  document.body.appendChild(boards[1]);
+  div.appendChild(boards[0]);
+  div.appendChild(boards[1]);
 };
 
 export {init, start};

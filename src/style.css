@@ -3,7 +3,12 @@ html {
   color: white;
 }
 
-body {
+p {
+  font-size: 36px;
+  text-align: center;
+}
+
+.gb-container {
   align-items: center;
   display: flex;
   justify-content: space-around;
