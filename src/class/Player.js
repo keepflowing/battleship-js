@@ -28,7 +28,7 @@ export default class Player {
       if (ship) {
         if (ship.isSunk()) {
           output.innerText =
-          (`${this.name} has sunk ${enemy.name}'s ${ship.id}`);
+          (`${this.name} has sunken ${enemy.name}'s ${ship.id}`);
         } else {
           output.innerText = (`${this.name} has hit a ship on ${coord}`);
         }

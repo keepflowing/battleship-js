@@ -27,8 +27,8 @@ const initDragnDrop = (square, p) => {
 };
 
 const createShipPlacers = (p) => {
-  const ships = [['Carrier', 5], ['Battleship', 4],
-    ['Cruiser', 3], ['Submarine', 3], ['Destroyer', 2]];
+  const ships = [['"Carrier"', 5], ['"Battleship"', 4],
+    ['"Cruiser"', 3], ['"Submarine"', 3], ['"Destroyer"', 2]];
   const placers = [];
   for (let i = 0; i < ships.length; i++) {
     const placer = document.createElement('div');
