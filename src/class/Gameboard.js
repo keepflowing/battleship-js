@@ -146,4 +146,19 @@ export default class Gameboard {
     }
     return true;
   }
+
+  /**
+  * @param {*} id
+  * @return {arr}
+  */
+  getSquaresWithShip(id) {
+    const squares = [];
+    for (const square in this.squares) {
+      if (this.squares[square].hasShip &&
+        this.squares[square].hasShip.id === id) {
+        squares.push(square);
+      }
+    }
+    return squares;
+  }
 }

@@ -19,7 +19,13 @@ const drawBoard = (p, e) => {
           const ship = p.gameboard.squares[keyArr[i]].hasShip;
           if (ship) {
             square.classList.add('ship');
-            if (ship.isSunk()) square.classList.add('sunk');
+            if (ship.isSunk()) {
+              const squares = p.gameboard.getSquaresWithShip(ship.id);
+              for (let i = 0; i < squares.length; i++) {
+                document.getElementById(`${p.name}${squares[i]}`).
+                    classList.add('sunk');
+              }
+            }
           }
           const coord = p.randomFire(e);
           document.getElementById(`${e.name}${coord}`)
