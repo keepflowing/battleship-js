@@ -1,3 +1,10 @@
+const paintSunkenShip = (ship, target) => {
+  const squares = target.gameboard.getSquaresWithShip(ship.id);
+  for (let i = 0; i < squares.length; i++) {
+    document.getElementById(`${target.name}${squares[i]}`).
+        classList.add('sunk');
+  }
+};
 /**
  * @param {Player} p
  * @param {Player} e
@@ -20,16 +27,16 @@ const drawBoard = (p, e) => {
           if (ship) {
             square.classList.add('ship');
             if (ship.isSunk()) {
-              const squares = p.gameboard.getSquaresWithShip(ship.id);
-              for (let i = 0; i < squares.length; i++) {
-                document.getElementById(`${p.name}${squares[i]}`).
-                    classList.add('sunk');
-              }
+              paintSunkenShip(ship, p);
             }
           }
           const coord = p.randomFire(e);
           document.getElementById(`${e.name}${coord}`)
               .classList.add('attacked');
+          const pShip = e.gameboard.squares[coord].hasShip;
+          if (pShip && pShip.isSunk()) {
+            paintSunkenShip(pShip, e);
+          }
         }
       });
     }
