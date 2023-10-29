@@ -34,7 +34,9 @@ export default class Gameboard {
     const ship = square.hasShip;
     if (ship) {
       const col = this.cols.indexOf(coord[0]);
-      const row = parseInt(coord[1]);
+      let row;
+      if (coord[2]) row = parseInt(coord[1]+coord[2]);
+      else row = parseInt(coord[1]);
       let count = 0;
       // calculate on which square ship is hit
       // if ship is rotated
