@@ -25,18 +25,18 @@ export default class Player {
     else output = document.querySelector('#p1');
     if (!enemy.gameboard.squares[coord].attacked) {
       const ship = enemy.gameboard.recieveAttack(coord);
-      if (ship) {
+      if (ship && output) {
         if (ship.isSunk()) {
           output.innerText =
           (`${this.name} has sunken ${enemy.name}'s ${ship.id}`);
         } else {
           output.innerText = (`${this.name} has hit a ship on ${coord}`);
         }
-      } else {
+      } else if(output) {
         output.innerText = (`${this.name} attacks ${coord}, it's a miss.`);
       }
 
-      if (enemy.gameboard.allSunk()) {
+      if (enemy.gameboard.allSunk() && output) {
         output.innerText = (`Game Over! ${this.name} wins!`);
       }
       return true;
